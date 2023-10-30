@@ -1,12 +1,25 @@
 import { typescript } from 'projen';
+
 const project = new typescript.TypeScriptProject({
-  defaultReleaseBranch: 'main',
   name: 'projen-turborepo',
+  authorName: 'Maksim Yersh',
+  authorEmail: 'yersh.maks@gmail.com',
+  authorUrl: 'yer.sh',
+
+  autoMerge: true,
+  autoApproveUpgrades: true,
+  autoApproveOptions: {
+    allowedUsernames: ['edelwud'],
+  },
+  defaultReleaseBranch: 'main',
+  release: true,
+  minNodeVersion: '20.9.0',
+  workflowNodeVersion: '20.9.0',
+  workflowPackageCache: true,
+
   projenrcTs: true,
 
-  // deps: [],                /* Runtime dependencies of this module. */
-  // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
-  // devDeps: [],             /* Build dependencies for this module. */
-  // packageName: undefined,  /* The "name" in package.json. */
+  deps: ['projen'],
 });
+
 project.synth();
