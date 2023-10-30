@@ -19,7 +19,6 @@ const project = new TurborepoTsProject({
   pnpmVersion: "8",
   minNodeVersion: "20.9.0",
   workflowPackageCache: true,
-  buildWorkflow: false,
 
   projenrcTs: true,
   prettier: true,

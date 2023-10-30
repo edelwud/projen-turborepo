@@ -1,7 +1,14 @@
 import path from "path";
 import { RootSchema } from "@turbo/types/src/types/config";
-import { DependencyType, YamlFile } from "projen";
+import { DependencyType, filteredRunsOnOptions, YamlFile } from "projen";
+import { BuildWorkflow } from "projen/lib/build";
+import { DEFAULT_GITHUB_ACTIONS_USER } from "projen/lib/github/constants";
+import {
+  JobPermission,
+  JobPermissions,
+} from "projen/lib/github/workflows-model";
 import { NodePackageManager, NodeProject } from "projen/lib/javascript";
+import { CodeArtifactAuthProvider } from "projen/lib/release";
 import {
   TypeScriptProject,
   TypeScriptProjectOptions,
@@ -13,6 +20,7 @@ export interface TurborepoTsProjectOptions extends TypeScriptProjectOptions {
 }
 
 export class TurborepoTsProject extends TypeScriptProject {
+  public readonly turborepoBuildWorkflow?: BuildWorkflow;
   constructor(options: TurborepoTsProjectOptions) {
     const defaultReleaseBranch = options.defaultReleaseBranch ?? "main";
     super({
@@ -22,6 +30,7 @@ export class TurborepoTsProject extends TypeScriptProject {
       sampleCode: false,
       jest: false,
       github: true,
+      buildWorkflow: false,
     });
 
     this.npmrc.addConfig("auto-install-peers", "true");
@@ -29,6 +38,41 @@ export class TurborepoTsProject extends TypeScriptProject {
     this.package.addEngine("pnpm", ">=8");
 
     new Turborepo(this, options.turborepo);
+
+    const buildEnabled = options.buildWorkflow ?? !this.parent;
+    if (buildEnabled && this.github) {
+      const requiresIdTokenPermission =
+        (options.scopedPackagesOptions ?? []).length > 0 &&
+        options.codeArtifactOptions?.authProvider ===
+          CodeArtifactAuthProvider.GITHUB_OIDC;
+
+      const workflowPermissions: JobPermissions = {
+        idToken: requiresIdTokenPermission ? JobPermission.WRITE : undefined,
+      };
+
+      this.turborepoBuildWorkflow = new BuildWorkflow(this, {
+        name: "turborepo-build",
+        buildTask: this.buildTask,
+        artifactsDirectory: this.artifactsDirectory,
+        containerImage: options.workflowContainerImage,
+        gitIdentity: options.workflowGitIdentity ?? DEFAULT_GITHUB_ACTIONS_USER,
+        mutableBuild: options.mutableBuild,
+        preBuildSteps: this.renderWorkflowSetup({
+          mutable: options.mutableBuild ?? true,
+        }),
+        postBuildSteps: options.postBuildSteps,
+        ...filteredRunsOnOptions(
+          options.workflowRunsOn,
+          options.workflowRunsOnGroup,
+        ),
+        workflowTriggers: options.buildWorkflowTriggers,
+        permissions: workflowPermissions,
+        env: {
+          TURBO_TOKEN: "${{ secrets.TURBO_TOKEN }}",
+          TURBO_TEAM: "${{ vars.TURBO_TEAM }}",
+        },
+      });
+    }
   }
 
   preSynthesize() {

@@ -1,6 +1,5 @@
 import { RootSchema } from "@turbo/types/src/types/config";
 import { Component, JsonFile, Project } from "projen";
-import { BuildWorkflow } from "projen/lib/build";
 import { NodeProject } from "projen/lib/javascript";
 import { CommandUtils } from "../utils";
 
@@ -29,16 +28,6 @@ export class Turborepo extends Component {
         receiveArgs: true,
       },
     );
-
-    new BuildWorkflow(this.nodeProject, {
-      name: "turbo-build",
-      buildTask: this.nodeProject.buildTask,
-      artifactsDirectory: ".turbo",
-      env: {
-        TURBO_TOKEN: "${{ secrets.TURBO_TOKEN }}",
-        TURBO_TEAM: "${{ vars.TURBO_TEAM }}",
-      },
-    });
 
     this.turboSchema = options;
   }
