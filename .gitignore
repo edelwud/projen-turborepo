@@ -32,6 +32,8 @@ jspm_packages/
 !/.projenrc.js
 /dist/changelog.md
 /dist/version.txt
+!/.prettierignore
+!/.prettierrc.json
 !/.npmrc
 !/test/
 !/tsconfig.json
@@ -41,5 +43,4 @@ jspm_packages/
 /dist/
 !/.eslintrc.json
 .turbo/
-!/turbo.json
 !/pnpm-workspace.yaml

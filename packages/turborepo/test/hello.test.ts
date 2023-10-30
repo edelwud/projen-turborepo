@@ -1,15 +1,15 @@
-import { synthSnapshot } from 'projen/lib/util/synth';
-import { TurborepoTsProject } from '../src';
+import { synthSnapshot } from "projen/lib/util/synth";
+import { TurborepoTsProject } from "../src";
 
-test('hello', () => {
+test("hello", () => {
   const monorepo = new TurborepoTsProject({
-    name: 'empty',
-    defaultReleaseBranch: 'main',
+    name: "empty",
+    defaultReleaseBranch: "main",
     turborepo: {
       pipeline: {
         build: {
-          dependsOn: ['^build'],
-          outputs: ['.next/**', '!.next/cache/**'],
+          dependsOn: ["^build"],
+          outputs: [".next/**", "!.next/cache/**"],
         },
         test: {},
       },
