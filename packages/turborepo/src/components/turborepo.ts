@@ -19,7 +19,9 @@ export class Turborepo extends Component {
     this.nodeProject.gitignore.addPatterns('.turbo/');
 
     new JsonFile(this.nodeProject, 'turbo.json', {
-      obj: options,
+      obj: Object.assign({
+        $schema: 'https://turbo.build/schema.json',
+      }, options),
       readonly: true,
     });
   }

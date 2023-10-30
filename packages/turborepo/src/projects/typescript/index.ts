@@ -1,10 +1,12 @@
 import path from 'path';
+import { RootSchema } from '@turbo/types/src/types/config';
 import { DependencyType, YamlFile } from 'projen';
 import { NodePackageManager, NodeProject } from 'projen/lib/javascript';
 import { TypeScriptProject, TypeScriptProjectOptions } from 'projen/lib/typescript';
 import { Turborepo } from '../../components';
 
 export interface TurborepoTsProjectOptions extends TypeScriptProjectOptions {
+  turborepo: Omit<RootSchema, '$schema'>;
 }
 
 export class TurborepoTsProject extends TypeScriptProject {
@@ -23,16 +25,13 @@ export class TurborepoTsProject extends TypeScriptProject {
 	  this.package.addField('private', true);
 	  this.package.addEngine('pnpm', '>=8');
 
-	  new Turborepo(this, {
-      $schema: 'https://turbo.build/schema.json',
-		  pipeline: {
-			  build: {
-				  dependsOn: ['^build'],
-				  outputs: ['.next/**', '!.next/cache/**'],
-			  },
-			  test: {},
-		  },
-	  });
+    // @ts-ignore
+	  this.buildTask._locked = false;
+    this.buildTask.reset('npx turbo build', {
+      receiveArgs: true,
+    });
+
+	  new Turborepo(this, options.turborepo);
   }
 
   preSynthesize() {
