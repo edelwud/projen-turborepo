@@ -1,6 +1,8 @@
-import { typescript } from 'projen';
+import { NodePackageManager } from 'projen/lib/javascript';
+import { TypeScriptProject } from 'projen/lib/typescript';
+import { TurborepoTsProject } from './src';
 
-const project = new typescript.TypeScriptProject({
+const project = new TurborepoTsProject({
   name: 'projen-turborepo',
   authorName: 'Maksim Yersh',
   authorEmail: 'yersh.maks@gmail.com',
@@ -19,7 +21,26 @@ const project = new typescript.TypeScriptProject({
 
   projenrcTs: true,
 
-  deps: ['projen'],
+  deps: ['projen', '@turbo/types'],
+
+  gitignore: ['test/__fixtures__'],
+});
+
+new TypeScriptProject({
+  parent: project,
+  name: 'sample-app',
+  defaultReleaseBranch: 'main',
+  outdir: 'apps/sample-app',
+  packageManager: NodePackageManager.PNPM,
+});
+
+new TypeScriptProject({
+  parent: project,
+  name: 'sample-app2',
+  defaultReleaseBranch: 'main',
+  outdir: 'apps/sample-app2',
+  packageManager: NodePackageManager.PNPM,
+  deps: ['sample-app@workspace:*'],
 });
 
 project.synth();
