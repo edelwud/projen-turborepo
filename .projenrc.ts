@@ -9,6 +9,18 @@ const project = new TurborepoTsProject({
   authorUrl: "yer.sh",
   defaultReleaseBranch: "main",
 
+  autoMerge: true,
+  autoApproveUpgrades: true,
+  autoApproveOptions: {
+    allowedUsernames: ["edelwud"],
+  },
+  release: false,
+  depsUpgrade: false,
+  pnpmVersion: "8",
+  minNodeVersion: "20.9.0",
+  workflowPackageCache: true,
+  buildWorkflow: false,
+
   projenrcTs: true,
   prettier: true,
   devDeps: ["projen-turborepo@workspace:*"],

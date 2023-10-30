@@ -3,6 +3,8 @@
 !/.projen/tasks.json
 !/.projen/deps.json
 !/.projen/files.json
+!/.github/workflows/pull-request-lint.yml
+!/.github/workflows/auto-approve.yml
 !/package.json
 !/LICENSE
 !/.npmignore
@@ -30,8 +32,7 @@ jspm_packages/
 .yarn-integrity
 .cache
 !/.projenrc.js
-/dist/changelog.md
-/dist/version.txt
+!/.github/pull_request_template.md
 !/.prettierignore
 !/.prettierrc.json
 !/.npmrc
@@ -43,4 +44,5 @@ jspm_packages/
 /dist/
 !/.eslintrc.json
 .turbo/
+!/.github/workflows/turbo-build.yml
 !/pnpm-workspace.yaml

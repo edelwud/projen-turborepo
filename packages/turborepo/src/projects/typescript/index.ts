@@ -21,7 +21,7 @@ export class TurborepoTsProject extends TypeScriptProject {
       packageManager: NodePackageManager.PNPM,
       sampleCode: false,
       jest: false,
-      github: false,
+      github: true,
     });
 
     this.npmrc.addConfig("auto-install-peers", "true");

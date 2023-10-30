@@ -2,6 +2,10 @@
   "files": [
     ".eslintrc.json",
     ".gitattributes",
+    ".github/pull_request_template.md",
+    ".github/workflows/auto-approve.yml",
+    ".github/workflows/pull-request-lint.yml",
+    ".github/workflows/turbo-build.yml",
     ".gitignore",
     ".npmignore",
     ".npmrc",
