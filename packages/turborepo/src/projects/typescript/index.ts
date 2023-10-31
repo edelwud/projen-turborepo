@@ -80,17 +80,17 @@ export class TurborepoTsProject extends TypeScriptProject {
 
     const releaseEnabled =
       options.release ?? options.releaseWorkflow ?? !this.parent;
-    if (releaseEnabled) {
+    if (releaseEnabled && this.github) {
       new Changesets(this, {
         changelog: [
           "@changesets/changelog-github",
           { repo: options.repository?.replace("https://github.com/", "") },
         ],
         baseBranch: options.defaultReleaseBranch,
-        commit: false,
+        commit: ["@changesets/cli/commit", { skipCI: "version" }],
         access: "public",
-        ignore: ["sample-app"],
-        updateInternalDependencies: "minor",
+        ignore: [],
+        updateInternalDependencies: "patch",
       });
     }
   }

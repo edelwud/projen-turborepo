@@ -11,11 +11,14 @@ exports[`hello 1`] = `
       "@changesets/changelog-github",
       {},
     ],
-    "commit": false,
-    "ignore": [
-      "sample-app",
+    "commit": [
+      "@changesets/cli/commit",
+      {
+        "skipCI": "version",
+      },
     ],
-    "updateInternalDependencies": "minor",
+    "ignore": [],
+    "updateInternalDependencies": "patch",
   },
   ".eslintrc.json": {
     "env": {
