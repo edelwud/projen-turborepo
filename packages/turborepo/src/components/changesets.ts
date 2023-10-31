@@ -105,7 +105,7 @@ export class Changesets extends Component {
             publish: project.github?.project.runTaskCommand(releaseTask),
           },
           env: {
-            GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}",
+            GITHUB_TOKEN: project.github?.projenCredentials.tokenRef,
             NODE_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}",
           },
         },
