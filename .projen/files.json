@@ -1,10 +1,12 @@
 {
   "files": [
+    ".changeset/config.json",
     ".eslintrc.json",
     ".gitattributes",
     ".github/pull_request_template.md",
     ".github/workflows/auto-approve.yml",
     ".github/workflows/pull-request-lint.yml",
+    ".github/workflows/release.yml",
     ".github/workflows/turborepo-build.yml",
     ".gitignore",
     ".npmignore",

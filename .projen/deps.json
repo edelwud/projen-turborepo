@@ -1,6 +1,19 @@
 {
   "dependencies": [
     {
+      "name": "@changesets/changelog-github",
+      "type": "build"
+    },
+    {
+      "name": "@changesets/cli",
+      "type": "build"
+    },
+    {
+      "name": "@edelwud/projen-turborepo",
+      "version": "workspace:*",
+      "type": "build"
+    },
+    {
       "name": "@types/node",
       "version": "^20",
       "type": "build"
@@ -51,11 +64,6 @@
     },
     {
       "name": "projen",
-      "type": "build"
-    },
-    {
-      "name": "projen-turborepo",
-      "version": "workspace:*",
       "type": "build"
     },
     {

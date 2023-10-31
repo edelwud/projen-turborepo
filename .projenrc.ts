@@ -1,12 +1,13 @@
-import { NodePackageManager } from "projen/lib/javascript";
+import { TurborepoTsProject } from "@edelwud/projen-turborepo";
+import { NodePackageManager, NpmAccess } from "projen/lib/javascript";
 import { TypeScriptProject } from "projen/lib/typescript";
-import { TurborepoTsProject } from "projen-turborepo";
 
 const project = new TurborepoTsProject({
   name: "projen-turborepo",
   authorName: "Maksim Yersh",
   authorEmail: "yersh.maks@gmail.com",
   authorUrl: "yer.sh",
+  repository: "https://github.com/edelwud/projen-turborepo",
   defaultReleaseBranch: "main",
 
   autoMerge: true,
@@ -14,15 +15,13 @@ const project = new TurborepoTsProject({
   autoApproveOptions: {
     allowedUsernames: ["edelwud"],
   },
-  release: false,
-  depsUpgrade: false,
   pnpmVersion: "8",
   minNodeVersion: "20.9.0",
   workflowPackageCache: true,
 
   projenrcTs: true,
   prettier: true,
-  devDeps: ["projen-turborepo@workspace:*"],
+  devDeps: ["@edelwud/projen-turborepo@workspace:*"],
 
   turborepo: {
     pipeline: {
@@ -45,13 +44,22 @@ new TypeScriptProject({
 
 new TypeScriptProject({
   parent: project,
-  name: "projen-turborepo",
+  name: "@edelwud/projen-turborepo",
   outdir: "packages/turborepo",
+
+  authorName: "Maksim Yersh",
+  authorEmail: "yersh.maks@gmail.com",
+  authorUrl: "yer.sh",
+  repository: "https://github.com/edelwud/projen-turborepo",
+  npmRegistryUrl: "https://npm.pkg.github.com",
+  repositoryDirectory: "packages/turborepo",
+  npmAccess: NpmAccess.PUBLIC,
+
   defaultReleaseBranch: "main",
   packageManager: NodePackageManager.PNPM,
 
   prettier: true,
-  deps: ["projen", "@turbo/types"],
+  deps: ["projen", "@turbo/types", "@changesets/types"],
 });
 
 project.synth();

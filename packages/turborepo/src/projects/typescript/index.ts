@@ -8,12 +8,12 @@ import {
   JobPermissions,
 } from "projen/lib/github/workflows-model";
 import { NodePackageManager, NodeProject } from "projen/lib/javascript";
-import { CodeArtifactAuthProvider } from "projen/lib/release";
+import { CodeArtifactAuthProvider, Release } from "projen/lib/release";
 import {
   TypeScriptProject,
   TypeScriptProjectOptions,
 } from "projen/lib/typescript";
-import { Turborepo } from "../../components";
+import { Changesets, Turborepo } from "../../components";
 
 export interface TurborepoTsProjectOptions extends TypeScriptProjectOptions {
   turborepo: Omit<RootSchema, "$schema">;
@@ -21,6 +21,8 @@ export interface TurborepoTsProjectOptions extends TypeScriptProjectOptions {
 
 export class TurborepoTsProject extends TypeScriptProject {
   public readonly turborepoBuildWorkflow?: BuildWorkflow;
+  public readonly changeSetsRelease?: Release;
+
   constructor(options: TurborepoTsProjectOptions) {
     const defaultReleaseBranch = options.defaultReleaseBranch ?? "main";
     super({
@@ -31,6 +33,8 @@ export class TurborepoTsProject extends TypeScriptProject {
       jest: false,
       github: true,
       buildWorkflow: false,
+      release: false,
+      depsUpgrade: false,
     });
 
     this.npmrc.addConfig("auto-install-peers", "true");
@@ -40,16 +44,16 @@ export class TurborepoTsProject extends TypeScriptProject {
     new Turborepo(this, options.turborepo);
 
     const buildEnabled = options.buildWorkflow ?? !this.parent;
+    const requiresIdTokenPermission =
+      (options.scopedPackagesOptions ?? []).length > 0 &&
+      options.codeArtifactOptions?.authProvider ===
+        CodeArtifactAuthProvider.GITHUB_OIDC;
+
+    const workflowPermissions: JobPermissions = {
+      idToken: requiresIdTokenPermission ? JobPermission.WRITE : undefined,
+    };
+
     if (buildEnabled && this.github) {
-      const requiresIdTokenPermission =
-        (options.scopedPackagesOptions ?? []).length > 0 &&
-        options.codeArtifactOptions?.authProvider ===
-          CodeArtifactAuthProvider.GITHUB_OIDC;
-
-      const workflowPermissions: JobPermissions = {
-        idToken: requiresIdTokenPermission ? JobPermission.WRITE : undefined,
-      };
-
       this.turborepoBuildWorkflow = new BuildWorkflow(this, {
         name: "turborepo-build",
         buildTask: this.buildTask,
@@ -71,6 +75,22 @@ export class TurborepoTsProject extends TypeScriptProject {
           TURBO_TOKEN: "${{ secrets.TURBO_TOKEN }}",
           TURBO_TEAM: "${{ vars.TURBO_TEAM }}",
         },
+      });
+    }
+
+    const releaseEnabled =
+      options.release ?? options.releaseWorkflow ?? !this.parent;
+    if (releaseEnabled) {
+      new Changesets(this, {
+        changelog: [
+          "@changesets/changelog-github",
+          { repo: options.repository?.replace("https://github.com/", "") },
+        ],
+        baseBranch: options.defaultReleaseBranch,
+        commit: false,
+        access: "public",
+        ignore: ["sample-app"],
+        updateInternalDependencies: "minor",
       });
     }
   }

@@ -119,6 +119,17 @@
       "name": "pre-compile",
       "description": "Prepare the project for compilation"
     },
+    "release": {
+      "name": "release",
+      "steps": [
+        {
+          "spawn": "build"
+        },
+        {
+          "exec": "changeset publish"
+        }
+      ]
+    },
     "test": {
       "name": "test",
       "description": "Run tests",

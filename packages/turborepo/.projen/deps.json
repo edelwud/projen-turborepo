@@ -80,6 +80,10 @@
       "type": "build"
     },
     {
+      "name": "@changesets/types",
+      "type": "runtime"
+    },
+    {
       "name": "@turbo/types",
       "type": "runtime"
     },

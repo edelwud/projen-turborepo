@@ -1,5 +1,10 @@
 {
-  "name": "projen-turborepo",
+  "name": "@edelwud/projen-turborepo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edelwud/projen-turborepo",
+    "directory": "packages/turborepo"
+  },
   "scripts": {
     "build": "npx projen build",
     "compile": "npx projen compile",
@@ -13,6 +18,12 @@
     "test:watch": "npx projen test:watch",
     "upgrade": "npx projen upgrade",
     "watch": "npx projen watch"
+  },
+  "author": {
+    "name": "Maksim Yersh",
+    "email": "yersh.maks@gmail.com",
+    "url": "yer.sh",
+    "organization": false
   },
   "devDependencies": {
     "@types/jest": "^29.5.6",
@@ -35,12 +46,17 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@changesets/types": "^5.2.1",
     "@turbo/types": "^1.10.16",
     "projen": "^0.76.13"
   },
   "pnpm": {},
   "main": "lib/index.js",
   "license": "Apache-2.0",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/",
+    "access": "public"
+  },
   "version": "0.0.0",
   "jest": {
     "testMatch": [
