@@ -29,6 +29,8 @@ jobs:
         with:
           node-version: 20.9.0
           cache: pnpm
+          scope: "@edelwud"
+          registry-url: https://npm.pkg.github.com
       - name: Install dependencies
         run: pnpm i --no-frozen-lockfile
       - name: build

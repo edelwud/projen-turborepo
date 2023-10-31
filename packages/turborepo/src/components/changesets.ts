@@ -42,18 +42,33 @@ export class Changesets extends Component {
           with: {
             "fetch-depth": 0,
           },
-        } as JobStep,
-      ]
-        .concat(
-          project.renderWorkflowSetup({
-            mutable: true,
-          }),
-        )
-        .concat({
+        },
+        {
+          name: "Setup pnpm",
+          uses: "pnpm/action-setup@v2.2.4",
+          with: {
+            version: "8",
+          },
+        },
+        {
+          name: "Setup Node.js",
+          uses: "actions/setup-node@v3",
+          with: {
+            "node-version": "20.9.0",
+            cache: "pnpm",
+            scope: "@edelwud",
+            "registry-url": "https://npm.pkg.github.com",
+          },
+        },
+        {
+          name: "Install dependencies",
+          run: "pnpm i --no-frozen-lockfile",
+        },
+        {
           name: project.buildTask.name,
           run: project.github?.project.runTaskCommand(project.buildTask),
-        })
-        .concat({
+        },
+        {
           name: "Create Release Pull Request or Publish to npm",
           uses: "changesets/action@v1",
           with: {
@@ -63,7 +78,8 @@ export class Changesets extends Component {
             GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}",
             NODE_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}",
           },
-        }),
+        },
+      ] as JobStep[],
     });
     new JsonFile(project, ".changeset/config.json", {
       obj: Object.assign(
