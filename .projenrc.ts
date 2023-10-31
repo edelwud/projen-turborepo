@@ -13,7 +13,7 @@ const project = new TurborepoTsProject({
   autoMerge: true,
   autoApproveUpgrades: true,
   autoApproveOptions: {
-    allowedUsernames: ["edelwud"],
+    allowedUsernames: ["edelwud", "github-actions[bot]"],
   },
   pnpmVersion: "8",
   minNodeVersion: "20.9.0",

@@ -73,8 +73,8 @@ export class Changesets extends Component {
           name: "Create Release Pull Request or Publish to npm",
           uses: "changesets/action@v1",
           with: {
-            title: "ci(changesets): :package: version packages",
-            commit: "ci(changesets): version packages",
+            title: "chore(changesets): :package: version packages",
+            commit: "chore(changesets): version packages",
             publish: project.github?.project.runTaskCommand(releaseTask),
           },
           env: {
