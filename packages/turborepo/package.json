@@ -60,7 +60,7 @@
     "registry": "https://npm.pkg.github.com/",
     "access": "public"
   },
-  "version": "0.0.1",
+  "version": "0.1.0",
   "jest": {
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.ts?(x)",
