@@ -1,5 +1,11 @@
 # @edelwud/projen-nextjs
 
+## 0.1.0
+
+### Minor Changes
+
+- [`4a8078c`](https://github.com/edelwud/projen-turborepo/commit/4a8078ceabe5acea33c85100cb5ac79e174b809f) Thanks [@MaksimYersh](https://github.com/MaksimYersh)! - inital support nextjs 14
+
 ## 0.0.1
 
 ### Patch Changes
