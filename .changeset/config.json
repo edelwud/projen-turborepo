@@ -7,12 +7,7 @@
     }
   ],
   "baseBranch": "main",
-  "commit": [
-    "@changesets/cli/commit",
-    {
-      "skipCI": "version"
-    }
-  ],
+  "commit": false,
   "access": "public",
   "ignore": [],
   "updateInternalDependencies": "patch",
