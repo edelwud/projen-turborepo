@@ -59,6 +59,7 @@ new TypeScriptProject({
 
   defaultReleaseBranch: "main",
   packageManager: NodePackageManager.PNPM,
+  minNodeVersion: "20.9.0",
 
   prettier: true,
   deps: ["projen", "@turbo/types", "@changesets/types"],
