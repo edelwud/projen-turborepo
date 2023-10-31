@@ -1,5 +1,11 @@
 # @edelwud/projen-turborepo
 
+## 0.1.4
+
+### Patch Changes
+
+- [`cda1b97`](https://github.com/edelwud/projen-turborepo/commit/cda1b971d6ad3a066041c5113730a136f9b38b38) Thanks [@MaksimYersh](https://github.com/MaksimYersh)! - add library directory to turbo cache
+
 ## 0.1.3
 
 ### Patch Changes
