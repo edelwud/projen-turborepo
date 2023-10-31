@@ -1,5 +1,11 @@
 # @edelwud/projen-turborepo
 
+## 0.1.3
+
+### Patch Changes
+
+- [`c7261fc`](https://github.com/edelwud/projen-turborepo/commit/c7261fc28cbb7d9ae1aabf705fea64c1247f2ab7) Thanks [@MaksimYersh](https://github.com/MaksimYersh)! - move package registry to npm
+
 ## 0.1.2
 
 ### Patch Changes
