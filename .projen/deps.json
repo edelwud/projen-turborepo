@@ -9,11 +9,6 @@
       "type": "build"
     },
     {
-      "name": "@edelwud/projen-turborepo",
-      "version": "workspace:*",
-      "type": "build"
-    },
-    {
       "name": "@types/node",
       "version": "^20",
       "type": "build"
@@ -26,6 +21,11 @@
     {
       "name": "@typescript-eslint/parser",
       "version": "^6",
+      "type": "build"
+    },
+    {
+      "name": "@yersh/projen-turborepo",
+      "version": "workspace:*",
       "type": "build"
     },
     {

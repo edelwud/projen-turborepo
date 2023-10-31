@@ -83,8 +83,6 @@ export class Changesets extends Component {
           with: {
             "node-version": "20.9.0",
             cache: "pnpm",
-            scope: "@edelwud",
-            "registry-url": "https://npm.pkg.github.com",
           },
         },
         {
@@ -106,6 +104,7 @@ export class Changesets extends Component {
           },
           env: {
             GITHUB_TOKEN: project.github?.projenCredentials.tokenRef,
+            NPM_TOKEN: `\${{ secrets.${project.package.npmTokenSecret} }}`,
             NODE_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}",
           },
         },

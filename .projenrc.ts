@@ -1,4 +1,4 @@
-import { TurborepoTsProject } from "@edelwud/projen-turborepo";
+import { TurborepoTsProject } from "@yersh/projen-turborepo";
 import { NodePackageManager, NpmAccess } from "projen/lib/javascript";
 import { TypeScriptProject } from "projen/lib/typescript";
 
@@ -21,7 +21,7 @@ const project = new TurborepoTsProject({
 
   projenrcTs: true,
   prettier: true,
-  devDeps: ["@edelwud/projen-turborepo@workspace:*"],
+  devDeps: ["@yersh/projen-turborepo@workspace:*"],
 
   turborepo: {
     pipeline: {
@@ -36,14 +36,13 @@ const project = new TurborepoTsProject({
 
 new TypeScriptProject({
   parent: project,
-  name: "@edelwud/projen-turborepo",
+  name: "@yersh/projen-turborepo",
   outdir: "packages/turborepo",
 
   authorName: "Maksim Yersh",
   authorEmail: "yersh.maks@gmail.com",
   authorUrl: "yer.sh",
   repository: "https://github.com/edelwud/projen-turborepo",
-  npmRegistryUrl: "https://npm.pkg.github.com",
   repositoryDirectory: "packages/turborepo",
   npmAccess: NpmAccess.PUBLIC,
 
@@ -58,14 +57,13 @@ new TypeScriptProject({
 
 new TypeScriptProject({
   parent: project,
-  name: "@edelwud/projen-nextjs",
+  name: "@yersh/projen-nextjs",
   outdir: "packages/nextjs",
 
   authorName: "Maksim Yersh",
   authorEmail: "yersh.maks@gmail.com",
   authorUrl: "yer.sh",
   repository: "https://github.com/edelwud/projen-turborepo",
-  npmRegistryUrl: "https://npm.pkg.github.com",
   repositoryDirectory: "packages/nextjs",
   npmAccess: NpmAccess.PUBLIC,
 
