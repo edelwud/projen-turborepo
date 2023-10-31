@@ -28,6 +28,8 @@ export class Changesets extends Component {
       runsOn: ["ubuntu-latest"],
       env: {
         CI: "true",
+        TURBO_TOKEN: "${{ secrets.TURBO_TOKEN }}",
+        TURBO_TEAM: "${{ vars.TURBO_TEAM }}",
       },
       permissions: {
         contents: JobPermission.WRITE,
@@ -59,6 +61,7 @@ export class Changesets extends Component {
           },
           env: {
             GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}",
+            NODE_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}",
           },
         }),
     });
