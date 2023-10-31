@@ -1,5 +1,11 @@
 # @edelwud/projen-turborepo
 
+## 0.1.2
+
+### Patch Changes
+
+- [`397c1b5`](https://github.com/edelwud/projen-turborepo/commit/397c1b5a0e817cf9a8ede8fcb7fc2bcd1a440216) Thanks [@MaksimYersh](https://github.com/MaksimYersh)! - fix issue with auto-merge changesets pull-request
+
 ## 0.1.1
 
 ### Patch Changes
