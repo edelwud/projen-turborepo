@@ -87,7 +87,7 @@ export class TurborepoTsProject extends TypeScriptProject {
           { repo: options.repository?.replace("https://github.com/", "") },
         ],
         baseBranch: options.defaultReleaseBranch,
-        commit: ["@changesets/cli/commit", { skipCI: "version" }],
+        commit: false,
         access: "public",
         ignore: [],
         updateInternalDependencies: "patch",

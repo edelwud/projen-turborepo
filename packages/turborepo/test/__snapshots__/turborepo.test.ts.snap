@@ -11,12 +11,7 @@ exports[`hello 1`] = `
       "@changesets/changelog-github",
       {},
     ],
-    "commit": [
-      "@changesets/cli/commit",
-      {
-        "skipCI": "version",
-      },
-    ],
+    "commit": false,
     "ignore": [],
     "updateInternalDependencies": "patch",
   },
