@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.6",
+    "@types/lodash": "^4.14.200",
     "@types/node": "^20",
     "@typescript-eslint/eslint-plugin": "^6",
     "@typescript-eslint/parser": "^6",
@@ -48,6 +49,7 @@
   "dependencies": {
     "@changesets/types": "^5.2.1",
     "@turbo/types": "^1.10.16",
+    "lodash": "^4.17.21",
     "projen": "^0.76.13"
   },
   "pnpm": {},

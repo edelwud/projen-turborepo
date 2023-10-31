@@ -37,6 +37,7 @@ jobs:
       - name: build
         run: npx projen build
       - name: Create Release Pull Request or Publish to npm
+        id: changesets
         uses: changesets/action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -45,3 +46,9 @@ jobs:
           title: "chore(changesets): :package: version packages"
           commit: "chore(changesets): version packages"
           publish: npx projen release
+      - name: Add auto-merge label for created Pull Request
+        if: steps.changesets.outputs.pullRequestNumber != ''
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          number: ${{ steps.changesets.outputs.pullRequestNumber }}
+          labels: auto-approve

@@ -1,4 +1,5 @@
 import { RootSchema } from "@turbo/types/src/types/config";
+import { merge } from "lodash";
 import { Component, JsonFile, Project } from "projen";
 import { NodeProject } from "projen/lib/javascript";
 import { CommandUtils } from "../utils";
@@ -12,6 +13,16 @@ export class Turborepo extends Component {
     return project.components.find(isTurborepo);
   }
 
+  private readonly defaultConfig: RootSchema = {
+    pipeline: {
+      build: {
+        dependsOn: ["^build"],
+        outputs: [".next/**", "!.next/cache/**", "dist/**"],
+      },
+      watch: {},
+      test: {},
+    },
+  };
   private readonly nodeProject: NodeProject;
   private readonly turboSchema: RootSchema;
 
@@ -29,7 +40,15 @@ export class Turborepo extends Component {
       },
     );
 
-    this.turboSchema = options;
+    CommandUtils.overrideDefaultCommand(
+      this.nodeProject.tasks.tryFind("watch"),
+      "npx turbo watch",
+      {
+        receiveArgs: true,
+      },
+    );
+
+    this.turboSchema = merge(this.defaultConfig, options);
   }
 
   synthesize() {
