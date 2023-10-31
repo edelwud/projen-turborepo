@@ -1,7 +1,7 @@
 import { Config } from "@changesets/types";
 import { Component, JsonFile } from "projen";
 import { GithubWorkflow } from "projen/lib/github";
-import { JobPermission } from "projen/lib/github/workflows-model";
+import { JobPermission, JobStep } from "projen/lib/github/workflows-model";
 import { NodeProject } from "projen/lib/javascript";
 
 export interface ChangesetsConfig extends Partial<Config> {}
@@ -33,10 +33,20 @@ export class Changesets extends Component {
         contents: JobPermission.WRITE,
         packages: JobPermission.WRITE,
       },
-      steps: project
-        .renderWorkflowSetup({
-          mutable: true,
-        })
+      steps: [
+        {
+          name: "Checkout source code",
+          uses: "actions/checkout@v4",
+          with: {
+            "fetch-depth": 0,
+          },
+        } as JobStep,
+      ]
+        .concat(
+          project.renderWorkflowSetup({
+            mutable: true,
+          }),
+        )
         .concat({
           name: project.buildTask.name,
           run: project.github?.project.runTaskCommand(project.buildTask),
