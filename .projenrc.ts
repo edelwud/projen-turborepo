@@ -62,7 +62,8 @@ new TypeScriptProject({
   minNodeVersion: "20.9.0",
 
   prettier: true,
-  deps: ["projen", "@turbo/types", "@changesets/types"],
+  deps: ["projen", "lodash", "@turbo/types", "@changesets/types"],
+  devDeps: ["@types/lodash"],
 });
 
 new TypeScriptProject({

@@ -5,6 +5,10 @@
       "type": "build"
     },
     {
+      "name": "@types/lodash",
+      "type": "build"
+    },
+    {
       "name": "@types/node",
       "version": "^20",
       "type": "build"
@@ -85,6 +89,10 @@
     },
     {
       "name": "@turbo/types",
+      "type": "runtime"
+    },
+    {
+      "name": "lodash",
       "type": "runtime"
     },
     {

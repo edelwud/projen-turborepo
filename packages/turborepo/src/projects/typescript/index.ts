@@ -13,10 +13,11 @@ import {
   TypeScriptProject,
   TypeScriptProjectOptions,
 } from "projen/lib/typescript";
-import { Changesets, Turborepo } from "../../components";
+import { Changesets, ChangesetsConfig, Turborepo } from "../../components";
 
 export interface TurborepoTsProjectOptions extends TypeScriptProjectOptions {
   turborepo: Omit<RootSchema, "$schema">;
+  changeSetsConfig?: ChangesetsConfig;
 }
 
 export class TurborepoTsProject extends TypeScriptProject {
@@ -83,15 +84,10 @@ export class TurborepoTsProject extends TypeScriptProject {
       options.release ?? options.releaseWorkflow ?? !this.parent;
     if (releaseEnabled && this.github) {
       new Changesets(this, {
-        changelog: [
-          "@changesets/changelog-github",
-          { repo: options.repository?.replace("https://github.com/", "") },
-        ],
+        autoMerge: options.autoMerge,
+        repository: options.repository,
         baseBranch: options.defaultReleaseBranch,
-        commit: false,
-        access: "public",
-        ignore: [],
-        updateInternalDependencies: "patch",
+        ...options.changeSetsConfig,
       });
     }
   }
