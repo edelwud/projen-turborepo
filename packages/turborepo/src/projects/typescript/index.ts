@@ -114,6 +114,11 @@ export class TurborepoTsProject extends TypeScriptProject {
       if (subProject instanceof NodeProject) {
         subProject.tryRemoveFile(".npmrc");
         subProject.package.removeScript("projen");
+        if (subProject.package.packageManager !== NodePackageManager.PNPM) {
+          throw new Error(
+            `${subProject.name} packageManager does not match the monorepo packageManager: ${this.package.packageManager}.`,
+          );
+        }
       }
     });
 
