@@ -65,4 +65,25 @@ new TypeScriptProject({
   deps: ["projen", "@turbo/types", "@changesets/types"],
 });
 
+new TypeScriptProject({
+  parent: project,
+  name: "@edelwud/projen-nextjs",
+  outdir: "packages/nextjs",
+
+  authorName: "Maksim Yersh",
+  authorEmail: "yersh.maks@gmail.com",
+  authorUrl: "yer.sh",
+  repository: "https://github.com/edelwud/projen-turborepo",
+  npmRegistryUrl: "https://npm.pkg.github.com",
+  repositoryDirectory: "packages/nextjs",
+  npmAccess: NpmAccess.PUBLIC,
+
+  defaultReleaseBranch: "main",
+  packageManager: NodePackageManager.PNPM,
+  minNodeVersion: "20.9.0",
+
+  prettier: true,
+  deps: ["projen"],
+});
+
 project.synth();

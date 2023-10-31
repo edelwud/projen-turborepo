@@ -37,6 +37,7 @@ export class TurborepoTsProject extends TypeScriptProject {
       depsUpgrade: false,
     });
 
+    this.defaultTask?.env("RELEASE", "true");
     this.npmrc.addConfig("auto-install-peers", "true");
     this.package.addField("private", true);
     this.package.addEngine("pnpm", ">=8");
