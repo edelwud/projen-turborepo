@@ -34,16 +34,6 @@ const project = new TurborepoTsProject({
   },
 });
 
-const sampleApp = new TypeScriptProject({
-  parent: project,
-  name: "sample-app",
-  defaultReleaseBranch: "main",
-  outdir: "apps/sample-app",
-  packageManager: NodePackageManager.PNPM,
-});
-
-sampleApp.package.addField("private", true);
-
 new TypeScriptProject({
   parent: project,
   name: "@edelwud/projen-turborepo",
