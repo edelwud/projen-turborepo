@@ -54,6 +54,9 @@
     "default": {
       "name": "default",
       "description": "Synthesize project files",
+      "env": {
+        "RELEASE": "true"
+      },
       "steps": [
         {
           "exec": "ts-node --project tsconfig.dev.json .projenrc.ts"
