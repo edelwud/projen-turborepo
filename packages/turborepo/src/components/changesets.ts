@@ -34,6 +34,7 @@ export class Changesets extends Component {
       permissions: {
         contents: JobPermission.WRITE,
         packages: JobPermission.WRITE,
+        pullRequests: JobPermission.WRITE,
       },
       steps: [
         {
