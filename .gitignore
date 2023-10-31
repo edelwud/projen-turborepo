@@ -45,6 +45,7 @@ jspm_packages/
 !/.eslintrc.json
 .turbo/
 !/.github/workflows/turborepo-build.yml
+!/.mergify.yml
 !/.changeset/config.json
 !/.github/workflows/release.yml
 !/pnpm-workspace.yaml

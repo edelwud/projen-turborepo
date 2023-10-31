@@ -2,13 +2,14 @@ import path from "path";
 import { RootSchema } from "@turbo/types/src/types/config";
 import { DependencyType, filteredRunsOnOptions, YamlFile } from "projen";
 import { BuildWorkflow } from "projen/lib/build";
+import { AutoMerge } from "projen/lib/github";
 import { DEFAULT_GITHUB_ACTIONS_USER } from "projen/lib/github/constants";
 import {
   JobPermission,
   JobPermissions,
 } from "projen/lib/github/workflows-model";
 import { NodePackageManager, NodeProject } from "projen/lib/javascript";
-import { CodeArtifactAuthProvider, Release } from "projen/lib/release";
+import { CodeArtifactAuthProvider } from "projen/lib/release";
 import {
   TypeScriptProject,
   TypeScriptProjectOptions,
@@ -22,7 +23,7 @@ export interface TurborepoTsProjectOptions extends TypeScriptProjectOptions {
 
 export class TurborepoTsProject extends TypeScriptProject {
   public readonly turborepoBuildWorkflow?: BuildWorkflow;
-  public readonly changeSetsRelease?: Release;
+  public readonly turborepoAutoMerge?: AutoMerge;
 
   constructor(options: TurborepoTsProjectOptions) {
     const defaultReleaseBranch = options.defaultReleaseBranch ?? "main";
@@ -77,6 +78,23 @@ export class TurborepoTsProject extends TypeScriptProject {
           TURBO_TOKEN: "${{ secrets.TURBO_TOKEN }}",
           TURBO_TEAM: "${{ vars.TURBO_TEAM }}",
         },
+      });
+    }
+
+    if (
+      (options.autoMerge ?? true) &&
+      this.github?.mergify &&
+      this.turborepoBuildWorkflow?.buildJobIds
+    ) {
+      this.turborepoAutoMerge = new AutoMerge(
+        this.github,
+        options.autoMergeOptions,
+      );
+      this.turborepoAutoMerge.addConditionsLater({
+        render: () =>
+          this.turborepoBuildWorkflow?.buildJobIds.map(
+            (id) => `status-success=${id}`,
+          ) ?? [],
       });
     }
 

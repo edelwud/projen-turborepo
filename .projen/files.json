@@ -9,6 +9,7 @@
     ".github/workflows/release.yml",
     ".github/workflows/turborepo-build.yml",
     ".gitignore",
+    ".mergify.yml",
     ".npmignore",
     ".npmrc",
     ".prettierignore",
