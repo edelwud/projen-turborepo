@@ -1,5 +1,11 @@
 # @edelwud/projen-turborepo
 
+## 0.1.1
+
+### Patch Changes
+
+- [#6](https://github.com/edelwud/projen-turborepo/pull/6) [`2f296b9`](https://github.com/edelwud/projen-turborepo/commit/2f296b9556cf4307b3f3ac694e3303c7185618c0) Thanks [@edelwud](https://github.com/edelwud)! - add functionality to auto-merge created pull-request
+
 ## 0.1.0
 
 ### Minor Changes
