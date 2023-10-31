@@ -1,7 +1,7 @@
 import { synthSnapshot } from "projen/lib/util/synth";
 import { TurborepoTsProject } from "../src";
 
-test("hello", () => {
+test("empty monorepo", () => {
   const monorepo = new TurborepoTsProject({
     name: "empty",
     defaultReleaseBranch: "main",
