@@ -17,7 +17,7 @@ export class Turborepo extends Component {
     pipeline: {
       build: {
         dependsOn: ["^build"],
-        outputs: [".next/**", "!.next/cache/**", "dist/**"],
+        outputs: [".next/**", "!.next/cache/**", "dist/**", "lib/**"],
       },
       watch: {},
       test: {},
