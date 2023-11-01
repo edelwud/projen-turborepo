@@ -1,5 +1,11 @@
 # @edelwud/projen-nextjs
 
+## 0.1.1
+
+### Patch Changes
+
+- [`8d8ddc3`](https://github.com/edelwud/projen-turborepo/commit/8d8ddc31e9f69199360d7b13fdfd88710b8d7c15) Thanks [@MaksimYersh](https://github.com/MaksimYersh)! - add additional commands
+
 ## 0.1.0
 
 ### Minor Changes
