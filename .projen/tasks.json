@@ -47,7 +47,8 @@
       "description": "Only compile",
       "steps": [
         {
-          "exec": "tsc --build"
+          "exec": "npx turbo compile",
+          "receiveArgs": true
         }
       ]
     },
@@ -107,10 +108,8 @@
       "description": "Creates the distribution package",
       "steps": [
         {
-          "exec": "mkdir -p dist/js"
-        },
-        {
-          "exec": "mv $(npm pack) dist/js/"
+          "exec": "npx turbo package",
+          "receiveArgs": true
         }
       ]
     },
@@ -138,7 +137,8 @@
       "description": "Run tests",
       "steps": [
         {
-          "spawn": "eslint"
+          "exec": "npx turbo test",
+          "receiveArgs": true
         }
       ]
     },

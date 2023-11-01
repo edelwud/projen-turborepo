@@ -625,8 +625,22 @@ auto-install-peers=true
         "name": "build",
         "steps": [
           {
-            "exec": "npx turbo build",
-            "receiveArgs": true,
+            "spawn": "default",
+          },
+          {
+            "spawn": "pre-compile",
+          },
+          {
+            "spawn": "compile",
+          },
+          {
+            "spawn": "post-compile",
+          },
+          {
+            "spawn": "test",
+          },
+          {
+            "spawn": "package",
           },
         ],
       },
@@ -727,10 +741,8 @@ auto-install-peers=true
         "name": "package",
         "steps": [
           {
-            "exec": "mkdir -p dist/js",
-          },
-          {
-            "exec": "mv $(npm pack) dist/js/",
+            "exec": "npx turbo package",
+            "receiveArgs": true,
           },
         ],
       },
@@ -758,7 +770,8 @@ auto-install-peers=true
         "name": "test",
         "steps": [
           {
-            "spawn": "eslint",
+            "exec": "npx turbo test",
+            "receiveArgs": true,
           },
         ],
       },
@@ -1109,7 +1122,9 @@ packages: []
           "lib/**",
         ],
       },
+      "compile": {},
       "eslint": {},
+      "package": {},
       "test": {},
       "watch": {},
     },

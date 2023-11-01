@@ -22,6 +22,8 @@ export class Turborepo extends Component {
       eslint: {},
       watch: {},
       test: {},
+      package: {},
+      compile: {},
     },
   };
   private readonly nodeProject: NodeProject;
@@ -44,6 +46,30 @@ export class Turborepo extends Component {
     CommandUtils.overrideDefaultCommand(
       this.nodeProject.tasks.tryFind("watch"),
       "npx turbo watch",
+      {
+        receiveArgs: true,
+      },
+    );
+
+    CommandUtils.overrideDefaultCommand(
+      this.nodeProject.testTask,
+      "npx turbo test",
+      {
+        receiveArgs: true,
+      },
+    );
+
+    CommandUtils.overrideDefaultCommand(
+      this.nodeProject.packageTask,
+      "npx turbo package",
+      {
+        receiveArgs: true,
+      },
+    );
+
+    CommandUtils.overrideDefaultCommand(
+      this.nodeProject.compileTask,
+      "npx turbo compile",
       {
         receiveArgs: true,
       },
