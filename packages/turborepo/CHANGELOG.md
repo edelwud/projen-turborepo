@@ -1,5 +1,11 @@
 # @edelwud/projen-turborepo
 
+## 0.1.6
+
+### Patch Changes
+
+- [`4db9030`](https://github.com/edelwud/projen-turborepo/commit/4db90308020252215d6607cc9ea1f477175b7837) Thanks [@MaksimYersh](https://github.com/MaksimYersh)! - move projen JsonFile initialization to constructor
+
 ## 0.1.5
 
 ### Patch Changes
