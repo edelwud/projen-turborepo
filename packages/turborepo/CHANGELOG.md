@@ -1,5 +1,11 @@
 # @edelwud/projen-turborepo
 
+## 0.1.5
+
+### Patch Changes
+
+- [`10b6feb`](https://github.com/edelwud/projen-turborepo/commit/10b6feb6c111c30cd81897c2cc7f5d742153fa68) Thanks [@MaksimYersh](https://github.com/MaksimYersh)! - include library directory to package
+
 ## 0.1.4
 
 ### Patch Changes
