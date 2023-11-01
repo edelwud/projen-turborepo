@@ -19,6 +19,7 @@ export class Turborepo extends Component {
         dependsOn: ["^build"],
         outputs: [".next/**", "!.next/cache/**", "dist/**", "lib/**"],
       },
+      eslint: {},
       watch: {},
       test: {},
     },
@@ -49,13 +50,10 @@ export class Turborepo extends Component {
     );
 
     this.turboSchema = merge(this.defaultConfig, options);
-  }
 
-  synthesize() {
     new JsonFile(this.nodeProject, "turbo.json", {
-      obj: Object.assign(this.turboSchema),
+      obj: this.turboSchema,
       readonly: true,
     });
-    super.synthesize();
   }
 }
