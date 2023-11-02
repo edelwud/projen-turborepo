@@ -1,6 +1,7 @@
 import { TurborepoTsProject } from "@yersh/projen-turborepo";
 import { NodePackageManager, NpmAccess } from "projen/lib/javascript";
 import { TypeScriptProject } from "projen/lib/typescript";
+import { DependencyType } from "projen";
 
 const project = new TurborepoTsProject({
   name: "projen-turborepo",
@@ -18,6 +19,7 @@ const project = new TurborepoTsProject({
   pnpmVersion: "8",
   minNodeVersion: "20.9.0",
   workflowPackageCache: true,
+  dependabot: true,
 
   projenrcTs: true,
   prettier: true,
@@ -34,7 +36,7 @@ const project = new TurborepoTsProject({
   },
 });
 
-new TypeScriptProject({
+const turborepo = new TypeScriptProject({
   parent: project,
   name: "@yersh/projen-turborepo",
   outdir: "packages/turborepo",
@@ -55,7 +57,7 @@ new TypeScriptProject({
   devDeps: ["@types/lodash"],
 });
 
-new TypeScriptProject({
+const nextjs = new TypeScriptProject({
   parent: project,
   name: "@yersh/projen-nextjs",
   outdir: "packages/nextjs",
@@ -74,5 +76,10 @@ new TypeScriptProject({
   prettier: true,
   deps: ["projen"],
 });
+
+[project, turborepo, nextjs].forEach(project => {
+  project.deps.removeDependency("eslint");
+  project.deps.addDependency("eslint@^7", DependencyType.DEVENV);
+})
 
 project.synth();

@@ -32,6 +32,7 @@ jspm_packages/
 .yarn-integrity
 .cache
 !/.projenrc.js
+!/.github/dependabot.yml
 !/.github/pull_request_template.md
 !/.prettierignore
 !/.prettierrc.json
