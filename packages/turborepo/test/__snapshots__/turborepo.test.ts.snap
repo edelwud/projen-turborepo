@@ -625,22 +625,8 @@ auto-install-peers=true
         "name": "build",
         "steps": [
           {
-            "spawn": "default",
-          },
-          {
-            "spawn": "pre-compile",
-          },
-          {
-            "spawn": "compile",
-          },
-          {
-            "spawn": "post-compile",
-          },
-          {
-            "spawn": "test",
-          },
-          {
-            "spawn": "package",
+            "exec": "npx turbo build",
+            "receiveArgs": true,
           },
         ],
       },
@@ -681,7 +667,8 @@ auto-install-peers=true
         "name": "compile",
         "steps": [
           {
-            "exec": "tsc --build",
+            "exec": "npx turbo compile",
+            "receiveArgs": true,
           },
         ],
       },
