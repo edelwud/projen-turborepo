@@ -13,4 +13,15 @@ export class CommandUtils {
     // @ts-ignore
     task?._locked = true;
   }
+  public static prependDefaultCommand(
+    task: Task,
+    prependedTask: Task,
+    options?: TaskStepOptions,
+  ) {
+    // @ts-ignore
+    task?._locked = false;
+    task?.prependSpawn(prependedTask, options);
+    // @ts-ignore
+    task?._locked = true;
+  }
 }

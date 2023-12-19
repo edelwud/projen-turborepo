@@ -43,6 +43,12 @@ export class Turborepo extends Component {
       },
     );
 
+    if (this.nodeProject.defaultTask)
+      CommandUtils.prependDefaultCommand(
+        this.nodeProject.buildTask,
+        this.nodeProject.defaultTask,
+      );
+
     CommandUtils.overrideDefaultCommand(
       this.nodeProject.tasks.tryFind("watch"),
       "npx turbo watch",

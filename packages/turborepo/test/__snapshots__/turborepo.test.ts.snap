@@ -627,6 +627,9 @@ auto-install-peers=true
         "name": "build",
         "steps": [
           {
+            "spawn": "default",
+          },
+          {
             "exec": "npx turbo build",
             "receiveArgs": true,
           },
