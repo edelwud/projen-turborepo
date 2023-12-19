@@ -58,6 +58,7 @@ export class Changesets extends Component {
         TURBO_TEAM: "${{ vars.TURBO_TEAM }}",
       },
       permissions: {
+        idToken: JobPermission.WRITE,
         contents: JobPermission.WRITE,
         packages: JobPermission.WRITE,
         pullRequests: JobPermission.WRITE,
@@ -106,6 +107,7 @@ export class Changesets extends Component {
             GITHUB_TOKEN: project.github?.projenCredentials.tokenRef,
             NPM_TOKEN: `\${{ secrets.${project.package.npmTokenSecret} }}`,
             NODE_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}",
+            NPM_CONFIG_PROVENANCE: true,
           },
         },
       ] as JobStep[],
