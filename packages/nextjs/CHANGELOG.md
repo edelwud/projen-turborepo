@@ -1,5 +1,11 @@
 # @edelwud/projen-nextjs
 
+## 0.1.2
+
+### Patch Changes
+
+- [`fa66d9725f719944b111494942f39cfc85e2568c`](https://github.com/edelwud/projen-turborepo/commit/fa66d9725f719944b111494942f39cfc85e2568c) Thanks [@edelwud](https://github.com/edelwud)! - upgraded dependencies
+
 ## 0.1.1
 
 ### Patch Changes

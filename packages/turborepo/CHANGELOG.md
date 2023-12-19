@@ -1,5 +1,11 @@
 # @edelwud/projen-turborepo
 
+## 0.2.0
+
+### Minor Changes
+
+- [`fa66d9725f719944b111494942f39cfc85e2568c`](https://github.com/edelwud/projen-turborepo/commit/fa66d9725f719944b111494942f39cfc85e2568c) Thanks [@edelwud](https://github.com/edelwud)! - add `NPM_CONFIG_PROVENANCE` publishing from workflow
+
 ## 0.1.7
 
 ### Patch Changes
