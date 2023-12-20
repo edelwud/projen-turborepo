@@ -1,5 +1,11 @@
 # @edelwud/projen-turborepo
 
+## 0.2.1
+
+### Patch Changes
+
+- [`ddd07374f323f3835838ad541b85e43accdc9b7e`](https://github.com/edelwud/projen-turborepo/commit/ddd07374f323f3835838ad541b85e43accdc9b7e) Thanks [@edelwud](https://github.com/edelwud)! - configure default command for projen build task
+
 ## 0.2.0
 
 ### Minor Changes
