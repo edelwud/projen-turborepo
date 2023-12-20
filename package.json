@@ -16,7 +16,8 @@
     "pre-compile": "npx projen pre-compile",
     "release": "npx projen release",
     "test": "npx projen test",
-    "watch": "npx projen watch"
+    "watch": "npx projen watch",
+    "postinstall": "turbo run build --filter=@yersh/projen-turborepo"
   },
   "author": {
     "name": "Maksim Yersh",
