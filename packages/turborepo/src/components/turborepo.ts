@@ -86,6 +86,7 @@ export class Turborepo extends Component {
     new JsonFile(this.nodeProject, "turbo.json", {
       obj: this.turboSchema,
       readonly: true,
+      marker: false,
     });
   }
 }
