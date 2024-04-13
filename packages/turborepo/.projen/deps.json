@@ -49,6 +49,11 @@
       "type": "build"
     },
     {
+      "name": "eslint",
+      "version": "^8",
+      "type": "build"
+    },
+    {
       "name": "jest",
       "type": "build"
     },
@@ -77,11 +82,6 @@
     {
       "name": "typescript",
       "type": "build"
-    },
-    {
-      "name": "eslint",
-      "version": "^7",
-      "type": "devenv"
     },
     {
       "name": "@changesets/types",

@@ -1,5 +1,4 @@
 import { TurborepoTsProject } from "@yersh/projen-turborepo";
-import { DependencyType } from "projen";
 import { NodePackageManager, NpmAccess } from "projen/lib/javascript";
 import { TypeScriptProject } from "projen/lib/typescript";
 
@@ -40,7 +39,7 @@ monorepo.addScripts({
   postinstall: "turbo run build --filter=@yersh/projen-turborepo",
 });
 
-const turborepo = new TypeScriptProject({
+new TypeScriptProject({
   parent: monorepo,
   name: "@yersh/projen-turborepo",
   outdir: "packages/turborepo",
@@ -61,7 +60,7 @@ const turborepo = new TypeScriptProject({
   devDeps: ["@types/lodash"],
 });
 
-const nextjs = new TypeScriptProject({
+new TypeScriptProject({
   parent: monorepo,
   name: "@yersh/projen-nextjs",
   outdir: "packages/nextjs",
@@ -79,11 +78,6 @@ const nextjs = new TypeScriptProject({
 
   prettier: true,
   deps: ["projen"],
-});
-
-[monorepo, turborepo, nextjs].forEach((project) => {
-  project.deps.removeDependency("eslint");
-  project.deps.addDependency("eslint@^7", DependencyType.DEVENV);
 });
 
 monorepo.synth();
