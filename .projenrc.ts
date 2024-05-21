@@ -19,6 +19,9 @@ const monorepo = new TurborepoTsProject({
   minNodeVersion: "20.9.0",
   workflowPackageCache: true,
   dependabot: true,
+  dependabotOptions: {
+    ignoreProjen: false,
+  },
 
   projenrcTs: true,
   prettier: true,

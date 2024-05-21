@@ -31,7 +31,6 @@ jspm_packages/
 *.tgz
 .yarn-integrity
 .cache
-!/.projenrc.js
 !/.github/dependabot.yml
 !/.github/pull_request_template.md
 !/.prettierignore
@@ -51,3 +50,4 @@ jspm_packages/
 !/.changeset/config.json
 !/.github/workflows/release.yml
 !/pnpm-workspace.yaml
+!/.projenrc.ts
