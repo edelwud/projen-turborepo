@@ -45,11 +45,6 @@ export class NextJsTsProject extends NextJsTypeScriptProject {
       jsx: TypeScriptJsxMode.PRESERVE,
       // @ts-ignore
       incremental: true,
-      plugins: [
-        {
-          name: "next",
-        },
-      ],
       paths: {
         "@/*": [`./${this.srcdir}/*`],
       },
