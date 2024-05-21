@@ -1,5 +1,11 @@
 # @edelwud/projen-turborepo
 
+## 0.3.0
+
+### Minor Changes
+
+- [#138](https://github.com/edelwud/projen-turborepo/pull/138) [`35574ed`](https://github.com/edelwud/projen-turborepo/commit/35574ed0b120a3887da3bc66764fdd353926e415) Thanks [@edelwud](https://github.com/edelwud)! - upgrade projen package
+
 ## 0.2.2
 
 ### Patch Changes
