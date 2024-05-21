@@ -1,5 +1,11 @@
 # @edelwud/projen-turborepo
 
+## 0.2.2
+
+### Patch Changes
+
+- [#135](https://github.com/edelwud/projen-turborepo/pull/135) [`9a421a455a1879b0f908d72fb1eac77146bf8dd7`](https://github.com/edelwud/projen-turborepo/commit/9a421a455a1879b0f908d72fb1eac77146bf8dd7) Thanks [@edelwud](https://github.com/edelwud)! - upgrade dependencies
+
 ## 0.2.1
 
 ### Patch Changes
