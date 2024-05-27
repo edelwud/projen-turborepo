@@ -49,7 +49,7 @@ importers:
         version: 3.2.5
       projen:
         specifier: ^0.81.15
-        version: 0.81.15(constructs@10.3.0)
+        version: 0.81.16(constructs@10.3.0)
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@20.12.12)(typescript@5.4.5)
@@ -4069,6 +4069,31 @@ packages:
       constructs: ^10.0.0
     dependencies:
       constructs: 10.3.0
+    dev: false
+    bundledDependencies:
+      - '@iarna/toml'
+      - case
+      - chalk
+      - comment-json
+      - conventional-changelog-config-spec
+      - fast-json-patch
+      - glob
+      - ini
+      - semver
+      - shx
+      - xmlbuilder2
+      - yaml
+      - yargs
+
+  /projen@0.81.16(constructs@10.3.0):
+    resolution: {integrity: sha512-AjzA5l/qqWJaQwX1FZbsY/TWqyS4vIsV2CfMw3wpqROthIfqCeqa3ov3xBK2YQXmMrDHB1NqZK3Z4kwzwWO0YQ==}
+    engines: {node: '>= 16.0.0'}
+    hasBin: true
+    peerDependencies:
+      constructs: ^10.0.0
+    dependencies:
+      constructs: 10.3.0
+    dev: true
     bundledDependencies:
       - '@iarna/toml'
       - case
